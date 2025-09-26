@@ -30,11 +30,12 @@ int main() {
   }
 
   // Print header
-  cout << setw(name_len + 2) <<left<< "Name" << setw(res_len + 2) << "Score" << endl;
+  cout << setw(name_len + 2) << left << "Name" << setw(res_len + 2) << "Score" << endl;
   cout << setfill('-') << setw(name_len + res_len + 4) << "" << endl;
   cout << setfill(' ');  // Reset fill
 
   // Process and print scores
+  double total_score = 0.0;
   for (const auto& [name, res] : students) {
     ++tot_stu;
     try {
@@ -51,7 +52,11 @@ int main() {
     } catch (exception& e) {
       cerr << "error" << endl;
     }
+    total_score += score;
   }
+  cout << setfill('-') << setw(name_len + res_len + 4) << "" << endl;
+  cout << setfill(' ');  // Reset fill
+  cout << setw(name_len + 2) << "Average : " << setw(res_len + 2) << (total_score / tot_stu) << endl;
   in_file.close();
   return 0;
 }
